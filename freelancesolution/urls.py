@@ -20,7 +20,7 @@ import accounts.views as accounts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    path('sign-in/', accounts.SignIn.as_view()),
+    path('', index, name = 'index'),
+    path('sign-in/', accounts.SignIn.as_view(), name = 'sign-in'),
     path('register/', accounts.Register.as_view()),
 ]

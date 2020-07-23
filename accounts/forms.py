@@ -5,7 +5,7 @@ from django import forms
 
 
 class UserSignInForm(forms.Form):
-    email = forms.CharField()
+    username_or_email = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
 
