@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block content %}
+<div class="page container">
+    <div class="row my-4 justify-content-center">
+        {% for item in cart_items %}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="card mb-2">
+                <img src="{{item.product.img.url}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.product.name }}</h5>
+                    <p class="card-text">{{ item.product.description }}</p>
+                    <div class="dropdown-divider"></div>
+                    <div class="row align-items-center justify-content-between m-1">
+                        <p class="card-text m-0">Price: <strong>{{ item.product.price }}EUR</strong></p>
+                        <p class="card-text m-0">Quantity: <strong>{{ item.quantity }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

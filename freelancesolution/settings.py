@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,6 +26,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'cart',
 	'products',
 	'accounts',
 	'home',
@@ -60,6 +62,7 @@ TEMPLATES = [
 				'django.template.context_processors.request',
 				'django.contrib.auth.context_processors.auth',
 				'django.contrib.messages.context_processors.messages',
+				'cart.contexts.cart_count',
 			],
 		},
 	},
@@ -123,6 +126,8 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+django_heroku.settings(locals())
 
 try:
 	from .local_settings import *

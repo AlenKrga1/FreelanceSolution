@@ -5,6 +5,11 @@ from django.views.generic import View
 from django.http import HttpResponse
 from django.urls import reverse
 
+def logout(request):
+	auth.logout(request)
+
+	return redirect(reverse('index'))
+
 class SignIn(View):
 
 	def get(self, request):

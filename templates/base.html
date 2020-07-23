@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg bg-white portfolio-navbar gradient">
+    <nav class="navbar navbar-dark navbar-expand-lg bg-white fixed-top portfolio-navbar gradient">
         <div class="container"><a class="navbar-brand logo" href="/">Alen Krga</a><button data-toggle="collapse"
                 class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
@@ -29,26 +29,37 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#">View profile</a>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <form method="get" action="{% url 'logout' %}">
+                                <button class="dropdown-item" type="submit">Logout</button>
+                            </form>
                         </div>
                     </li>
                     {% else %}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/sign-in/">Sign in</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/register/">Register</a></li>
                     {% endif %}
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/cart/view-cart/">
+                            <i class="icon ion-android-cart cart-icon"></i>
+                            {% if cart_count > 0 %}
+                            <span class="badge badge-light">{{ cart_count }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
     {% block content %}
     {% endblock %}
-    <footer class="footer page-footer">
+    <footer class="page-footer" id="footer">
         <div class="container">
             <div class="links"><a href="">About me</a><a href="">Contact me</a></div>
         </div>
     </footer>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
 </body>
 
 </html>
