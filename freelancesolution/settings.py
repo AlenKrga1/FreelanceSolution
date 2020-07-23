@@ -25,6 +25,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'products',
 	'accounts',
 	'home',
 	'django_forms_bootstrap',
