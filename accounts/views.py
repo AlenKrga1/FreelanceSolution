@@ -23,14 +23,11 @@ class SignIn(View):
 
 			if user:
 				auth.login(request, user)
-				print("successful")
-				messages.info(request, "Sign in successful")
+				messages.success(request, "Sign in successful")
 
 				if request.GET.get('next', '') != '':
-					print("next")
 					return redirect(request.GET.get('next'))
 				else:
-					print("index")
 					return redirect(reverse('index'))
 			else:
 				form.add_error(None, "Your username or password are incorrect")
@@ -38,6 +35,7 @@ class SignIn(View):
 				return render(request, 'signin.html', {'form': form, 'next': request.GET.get('next', '')})
 		else:
 			form.add_error(None, "invalid Form")
+
 			return render(request, 'signin.html', {'form': form, 'next': request.GET.get('next', '')})
 
 
@@ -48,3 +46,32 @@ class Register(View):
 		form = UserRegisterForm()
 
 		return render(request, 'register.html', {'form': form, 'next': request.GET.get('next', '')})
+
+
+	def post(self, request):
+		form = UserRegisterForm(request.POST)
+
+		if form.is_valid():
+			form.save()
+
+			user = auth.authenticate(
+				form.cleaned_data['username'],
+				password = form.cleaned_data['password1']
+			)
+
+			if user:
+				auth.login(request, user)
+
+				messages.success(request, "You have successfully registered")
+
+				return redirect(reverse('index'))
+
+			else:
+				form.add_error(None, "Your username or password are incorrect")
+
+				return render(request, 'register.html', {'form': form, 'next': request.GET.get('next', '')})
+
+		else:
+			form.add_error(None, "invalid Form")
+			
+			return render(request, 'register.html', {'form': form, 'next': request.GET.get('next', '')})

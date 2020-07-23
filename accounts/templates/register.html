@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6 m-5">
-            <form>
+            <form method="post" action="{% url 'register' %}?next={{ next }}">
                 <legend>Sign in</legend>
                 {% csrf_token %}
                 {{ form|as_bootstrap }}
