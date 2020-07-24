@@ -78,17 +78,17 @@ WSGI_APPLICATION = 'freelancesolution.wsgi.application'
 
 
 if 'DATABASE_URL' in os.environ:
-	DATABASES = {
-		'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-	}
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
 else:
-	print("Postgres URL not found, using sqlite instead")
-	DATABASES = {
-		'default': {
-			'ENGINE': 'django.db.backends.sqlite3',
-			'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-		}
-	}
+    print("Postgres URL not found, using sqlite instead")
+    DATABASES = {
+    	'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
@@ -111,8 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 AUTHENTICATION_BACKENDS = [
-	'django.contrib.auth.backends.ModelBackend',
-	'accounts.backends.EmailUsernameAuth'
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailUsernameAuth'
 ]
 
 
@@ -146,11 +146,11 @@ if USE_S3:
 	# S3 static files
 	STATIC_LOCATION = 'static'
 	STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-	STATICFILES_STORAGE = 'hello_django.storage_backends.StaticStorage'
+	STATICFILES_STORAGE = 'freelancesolution.storage_backends.StaticStorage'
 	# S3 media files
 	PUBLIC_MEDIA_LOCATION = 'media'
 	MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-	DEFAULT_FILE_STORAGE = 'hello_django.storage_backends.PublicMediaStorage'
+	DEFAULT_FILE_STORAGE = 'freelancesolution.storage_backends.PublicMediaStorage'
 else:
 	STATIC_URL = '/static/'
 	STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
