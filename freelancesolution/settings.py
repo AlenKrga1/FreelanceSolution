@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 	'products',
 	'accounts',
 	'home',
+	'storages',
 	'django_forms_bootstrap',
 	'django.contrib.admin',
 	'django.contrib.auth',
@@ -77,17 +78,17 @@ WSGI_APPLICATION = 'freelancesolution.wsgi.application'
 
 
 if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
+	DATABASES = {
+		'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+	}
 else:
-    print("Postgres URL not found, using sqlite instead")
-    DATABASES = {
-    	'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+	print("Postgres URL not found, using sqlite instead")
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.sqlite3',
+			'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+		}
+	}
 
 
 # Password validation
@@ -110,8 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'accounts.backends.EmailUsernameAuth'
+	'django.contrib.auth.backends.ModelBackend',
+	'accounts.backends.EmailUsernameAuth'
 ]
 
 
@@ -132,15 +133,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+USE_S3 = os.getenv('USE_S3') == 'TRUE'
+
+if USE_S3:
+	# AWS
+	AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+	AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+	AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+	AWS_DEFAULT_ACL = None
+	AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+	AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+	# S3 static files
+	STATIC_LOCATION = 'static'
+	STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+	STATICFILES_STORAGE = 'hello_django.storage_backends.StaticStorage'
+	# S3 media files
+	PUBLIC_MEDIA_LOCATION = 'media'
+	MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+	DEFAULT_FILE_STORAGE = 'hello_django.storage_backends.PublicMediaStorage'
+else:
+	STATIC_URL = '/static/'
+	STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+
+	MEDIA_URL = '/media/'
+	MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, 'static/')
 ]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 django_heroku.settings(locals())
 
