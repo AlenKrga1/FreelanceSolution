@@ -52,7 +52,8 @@
     </nav>
     {% block content %}
     {% endblock %}
-    <footer class="page-footer" id="footer">
+    <!-- Footer is hidden in the beginning before the javascript loads and configures it -->
+    <footer class="page-footer" id="footer" style="visibility: hidden;">
         <div class="container">
             <div class="links"><a href="">About me</a><a href="">Contact me</a></div>
         </div>

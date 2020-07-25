@@ -5,8 +5,9 @@
 {% block content %}
 <div class="page container">
     <div class="row my-4 justify-content-center">
+        {% if cart_items %}
         {% for item in cart_items %}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="col-xs-12 col-md-6 col-lg-4">
             <div class="card mb-2">
                 <img src="{{item.product.img.url}}" class="card-img-top">
                 <div class="card-body">
@@ -15,12 +16,29 @@
                     <div class="dropdown-divider"></div>
                     <div class="row align-items-center justify-content-between m-1">
                         <p class="card-text m-0">Price: <strong>{{ item.product.price }}EUR</strong></p>
-                        <p class="card-text m-0">Quantity: <strong>{{ item.quantity }}</strong></p>
+                        <div class="row align-items-center">
+                            <p class="card-text my-0" style="margin-right: 10px;">Quantity:</p>
+                            <form method="post" action="{% url 'update_cart' item.product.id %}">
+                                {% csrf_token %}
+                                <input name="quantity" type="number" value="{{ item.quantity }}"
+                                    style="max-width: 3em;" onchange="this.form.submit()" />
+                            </form>
+                            <form method="post" action="{% url 'delete_item_from_cart' item.product.id %}">
+                                {% csrf_token %}
+                                <button class="btn" type="submit" style="padding: 0 !important;"><i class="icon ion-android-delete mx-2" style="color: red; font-size: 1.5em;"></i></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="col-xs-12 col-md-6 text-center">
+            <h2>Your cart is empty.<br> Go to <a href="/products/">Products</a> page to order some beatiful designs!
+            </h2>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
