@@ -1,5 +1,4 @@
 function setFooterStyle() {
-    console.log("resize");
     if ($(document).height() <= $(window).height()) {
         $("#footer").addClass("footer");
     } else {

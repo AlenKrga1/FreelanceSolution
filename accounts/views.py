@@ -1,15 +1,20 @@
+from django.contrib.auth.decorators import login_required
 from .forms import UserSignInForm, UserRegisterForm
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
+from products.models import UserProduct
 from django.views.generic import View
 from django.http import HttpResponse
 from django.urls import reverse
 
 
+@login_required
 def profile(request):
-	return render(request, 'profile.html', {})
+	user_products = UserProduct.objects.filter(user = request.user)
 
+	return render(request, 'profile.html', {'user_products': user_products})
 
+@login_required
 def logout(request):
 	auth.logout(request)
 

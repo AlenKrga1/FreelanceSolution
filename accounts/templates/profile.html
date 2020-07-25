@@ -4,9 +4,30 @@
 
 {% block content %}
 <div class="page container">
-
+    <div class="card row my-4 p-3 mx-1">
+        <div>
+            <h2>Hi, {{ request.user.username }}</h2>
+        </div>
+        {% if user_products %}
+        <p>You can view the items you bought here and download high resolution versions of those items.</p>
+        {% else %}
+        <p>You currently have no designs, go ahead and check out my <a href="{% url 'products' %}">Products</a> page for
+            some funky designs, or if you need something unique, <a href>request a custom design</a> and get a quote
+            instantly!</p>
+        {% endif %}
+    </div>
+    <div class="row my-4 justify-content-center">
+        {% for user_product in user_products %}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="card mb-2">
+                <a href="{% url 'view_product' user_product.product.id %}"><img src="{{user_product.product.img.url}}" class="card-img-top"></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ user_product.product.name }}</h5>
+                    <button class="btn btn-block btn-primary">Download</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
-
-
-
 {% endblock %}
