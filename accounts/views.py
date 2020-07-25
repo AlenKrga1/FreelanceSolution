@@ -5,6 +5,11 @@ from django.views.generic import View
 from django.http import HttpResponse
 from django.urls import reverse
 
+
+def profile(request):
+	return render(request, 'profile.html', {})
+
+
 def logout(request):
 	auth.logout(request)
 

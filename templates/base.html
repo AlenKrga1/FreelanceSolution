@@ -19,7 +19,7 @@
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products/">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'products' %}">Products</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="">Request a design</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
@@ -28,18 +28,18 @@
                             Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">View profile</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}">View profile</a>
                             <form method="get" action="{% url 'logout' %}">
                                 <button class="dropdown-item" type="submit">Logout</button>
                             </form>
                         </div>
                     </li>
                     {% else %}
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/sign-in/">Sign in</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/register/">Register</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'sign-in' %}">Sign in</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
                     {% endif %}
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="/cart/view-cart/">
+                        <a class="nav-link" href="{% url 'view_cart' %}">
                             <i class="icon ion-android-cart cart-icon"></i>
                             {% if cart_count > 0 %}
                             <span class="badge badge-light">{{ cart_count }}</span>
