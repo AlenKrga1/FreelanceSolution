@@ -20,12 +20,14 @@
                             <p class="card-text my-0" style="margin-right: 10px;">Quantity:</p>
                             <form method="post" action="{% url 'update_cart' item.product.id %}">
                                 {% csrf_token %}
-                                <input name="quantity" type="number" value="{{ item.quantity }}"
-                                    style="max-width: 3em;" onchange="this.form.submit()" />
+                                <input name="quantity" type="number" value="{{ item.quantity }}" style="max-width: 3em;"
+                                    onchange="this.form.submit()" />
                             </form>
                             <form method="post" action="{% url 'delete_item_from_cart' item.product.id %}">
                                 {% csrf_token %}
-                                <button class="btn" type="submit" style="padding: 0 !important;"><i class="icon ion-android-delete mx-2" style="color: red; font-size: 1.5em;"></i></button>
+                                <button class="btn" type="submit" style="padding: 0 !important;"><i
+                                        class="icon ion-android-delete mx-2"
+                                        style="color: red; font-size: 1.5em;"></i></button>
                             </form>
                         </div>
                     </div>
@@ -40,5 +42,17 @@
         </div>
         {% endif %}
     </div>
+    {% if cart_items %}
+    <div class="card px-4 my-4">
+        <div class="row my-4 justify-content-between">
+            <div class="col">
+                <h4>Total:</h4>
+            </div>
+            <div class="col text-right">
+                <h4><strong>{{ total_price }}EUR</strong></h4>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
