@@ -8,3 +8,21 @@
 .cart-icon {
     font-size: 1.2em;
 }
+
+/* default for smaller screens */
+.product-details-center-left {
+    text-align: center;
+}
+.product-details-center-right {
+    text-align: center;
+}
+
+/* For larger screens */
+@media only screen and (min-width: 768px) {
+    .product-details-center-left {
+        text-align: left;
+    }
+    .product-details-center-right {
+        text-align: right;
+    }
+}
