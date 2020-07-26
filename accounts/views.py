@@ -38,7 +38,7 @@ class SignIn(View):
 
 			if user:
 				auth.login(request, user)
-				messages.success(request, "Sign in successful")
+				# messages.success(request, "Sign in successful")
 
 				if request.GET.get('next', '') != '':
 					return redirect(request.GET.get('next'))
@@ -77,7 +77,7 @@ class Register(View):
 			if user:
 				auth.login(request, user)
 
-				messages.success(request, "You have successfully registered")
+				# messages.success(request, "You have successfully registered")
 
 				return redirect(reverse('index'))
 

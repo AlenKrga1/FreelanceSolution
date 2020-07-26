@@ -27,6 +27,7 @@ ALLOWED_HOSTS = ['freelance-solution.herokuapp.com',]
 # Application definition
 
 INSTALLED_APPS = [
+	'checkout',
 	'cart',
 	'products',
 	'accounts',
@@ -114,6 +115,9 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.backends.EmailUsernameAuth'
 ]
+
+
+LOGIN_URL = '/sign-in/'
 
 
 # Internationalization

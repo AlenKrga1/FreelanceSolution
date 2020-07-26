@@ -31,4 +31,5 @@ urlpatterns = [
 	path('register/', accounts.Register.as_view(), name = 'register'),
 	path('logout/', accounts.logout, name = 'logout'),
 	path('cart/', include("cart.urls")),
+	path('checkout/', include("checkout.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
