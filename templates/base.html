@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="{% static 'fonts/ionicons.min.css' %}">
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg bg-white fixed-top portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="/">Alen Krga</a><button data-toggle="collapse"
-                class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span
+        <div class="container"><a class="navbar-brand logo" href="/">Alen Krga</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav navbar-nav ml-auto">
@@ -23,8 +23,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="">Request a design</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -40,18 +39,26 @@
                     {% endif %}
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="{% url 'view_cart' %}">
-                            <i class="icon ion-android-cart cart-icon"></i>
-                            {% if cart_count > 0 %}
-                            <span class="badge badge-light">{{ cart_count }}</span>
-                            {% endif %}
+                            <i class="icon ion-android-cart cart-icon"></i> {% if cart_count > 0 %}
+                            <span class="badge badge-light">{{ cart_count }}</span> {% endif %}
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    {% block content %}
-    {% endblock %}
+    {% if messages %}
+    <div class="page">
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show m-2" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %} {% block content %} {% endblock %}
     <!-- Footer is hidden in the beginning before the javascript loads and configures it -->
     <footer class="page-footer" id="footer" style="visibility: hidden;">
         <div class="container">
@@ -61,6 +68,7 @@
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/stripe.js' %}"></script>
 </body>
 
 </html>
