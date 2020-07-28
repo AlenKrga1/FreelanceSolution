@@ -58,7 +58,11 @@
         </div>
         {% endfor %}
     </div>
-    {% endif %} {% block content %} {% endblock %}
+    {% endif %} 
+    <div class="page">
+        {% block content %} {% endblock %}
+    </div>
+    <button class="btn btn-primary" onclick="scrollToTop()" id="scroll-to-top"><i class="icon ion-android-arrow-dropup"></i></button>
     <!-- Footer is hidden in the beginning before the javascript loads and configures it -->
     <footer class="page-footer" id="footer" style="visibility: hidden;">
         <div class="container">

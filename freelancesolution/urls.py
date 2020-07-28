@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.urls import path, include
 from products.views import Products, view_product
-import accounts.views as accounts
 from django.conf import settings
 from django.contrib import admin
 from home.views import index
@@ -24,12 +23,9 @@ from home.views import index
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', index, name = 'index'),
-	path('profile/', accounts.profile, name='profile'),
 	path('products/', Products.as_view(), name = 'products'),
 	path('product/<int:id>/', view_product, name = 'view_product'),
-	path('sign-in/', accounts.SignIn.as_view(), name = 'sign-in'),
-	path('register/', accounts.Register.as_view(), name = 'register'),
-	path('logout/', accounts.logout, name = 'logout'),
 	path('cart/', include("cart.urls")),
 	path('checkout/', include("checkout.urls")),
+	path('accounts/', include('accounts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
