@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.urls import path, include
-from products.views import Products, view_product
+from products.views import products, view_product
 from django.conf import settings
 from django.contrib import admin
 from home.views import index
@@ -23,7 +23,7 @@ from home.views import index
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', index, name = 'index'),
-	path('products/', Products.as_view(), name = 'products'),
+	path('products/', products, name = 'products'),
 	path('product/<int:id>/', view_product, name = 'view_product'),
 	path('cart/', include("cart.urls")),
 	path('checkout/', include("checkout.urls")),
