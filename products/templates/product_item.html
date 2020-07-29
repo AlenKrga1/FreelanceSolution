@@ -38,7 +38,7 @@
     <div class="row justify-content-between mx-2">
         <h2>Reviews</h2>
         {% if owns_product %}
-        <button class="btn btn-primary">Write a review</button>
+        <a href="{% url 'write-review' %}?id={{product.id}}"><button class="btn btn-primary">Write a review</button></a>
         {% endif %}
     </div>
     <div class="row mx-2">
@@ -50,9 +50,10 @@
     <div class="card my-4">
         <div class="row">
             <div class="col col-xs-12 m-4">
-                <h6 class="card-title"><strong>{{ request.user.username }}</strong></h6>
-                <h5 class="card-title">{{ review.title }}</h5>
-                <p class="card-text">{{ review.review }}</p>
+                <p>{{ review.date_created }}</p>
+                <h6><strong>{{ request.user.username }}</strong></h6>
+                <h5>{{ review.title }}</h5>
+                <p>{{ review.review }}</p>
             </div>
         </div>
     </div>

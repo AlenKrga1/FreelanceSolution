@@ -23,10 +23,9 @@ from home.views import index
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('', index, name = 'index'),
-	path('products/', products, name = 'products'),
-	path('product/<int:id>/', view_product, name = 'view_product'),
 	path('cart/', include("cart.urls")),
+	path('orders/', include("orders.urls")),
+	path('products/', include("products.urls")),
 	path('checkout/', include("checkout.urls")),
-	path('accounts/', include('accounts.urls')),
-	path('orders/', include('orders.urls')),
+	path('accounts/', include("accounts.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
