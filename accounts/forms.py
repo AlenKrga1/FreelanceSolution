@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 from django import forms
 
 
+class ContactMeForm(forms.Form):
+    email = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)
+
+
 class UserSignInForm(forms.Form):
     username_or_email = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)

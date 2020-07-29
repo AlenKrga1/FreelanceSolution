@@ -66,7 +66,7 @@
     <!-- Footer is hidden in the beginning before the javascript loads and configures it -->
     <footer class="page-footer" id="footer" style="visibility: hidden;">
         <div class="container">
-            <div class="links"><a href="">About me</a><a href="">Contact me</a></div>
+            <div class="links"><a href="{% url 'contact-me' %}">Contact me</a></div>
         </div>
     </footer>
     <script src="{% static 'js/jquery.min.js' %}"></script>

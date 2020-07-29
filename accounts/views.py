@@ -1,13 +1,52 @@
 from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
+from .forms import UserSignInForm, UserRegisterForm, ContactMeForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserSignInForm, UserRegisterForm
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
+from django.core.mail import send_mail
 from products.models import UserProduct
 from django.views.generic import View
 from django.http import HttpResponse
 from django.urls import reverse
 from orders.models import Order
+
+
+class ContactMe(View):
+
+	def post(self, request):
+		form = ContactMeForm(request.POST)
+
+		if form.is_valid():
+			email = form.cleaned_data['email']
+			message = form.cleaned_data['message']
+
+			send_mail(
+				f'You sent a message to Alen Krga',
+				f'Thanks for reaching out! We will be in touch soon.\n\nMessage: "{message}"',
+				'alen.krga1@gmail.com',
+				[email],
+				fail_silently=True,
+			)
+
+			send_mail(
+				f'You have a new message from {email}',
+				f'Message: {message}',
+				'alen.krga1@gmail.com',
+				['alen.krga1@gmail.com'],
+				fail_silently=True,
+			)
+
+			messages.info(request, "Message sent!")
+			return redirect(reverse('index'))
+
+		messages.error(request, "Invalid form")
+		return redirect(reverse('contact-me'))
+
+
+	def get(self, request):
+		form = ContactMeForm()
+
+		return render(request, 'contact_me.html', {'form': form})
 
 
 @login_required
