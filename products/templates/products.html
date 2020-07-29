@@ -14,6 +14,16 @@
         <div class="col">
             <form method="GET" action="">
                 <input name="search" placeholder="Search" class="form-control">
+                <div class="form-group mt-2">
+                    <label for="category">Choose category:</label>
+                    <select name="category" class="form-control" id="category">
+                        <option value="">-----</option>
+                        <option value="ICON" {% if request.GET.category == 'ICON' %} selected {% endif %}>Icons</option>
+                        <option value="LOGO" {% if request.GET.category == 'LOGO' %} selected {% endif %}>Logos</option>
+                        <option value="POSTER" {% if request.GET.category == 'POSTER' %} selected {% endif %}>Posters</option>
+                    </select>
+                </div>
+                <input type="submit">
             </form>
         </div>
     </div>
