@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse
 from django.utils.decorators import method_decorator
 from freelancesolution.enums import ProductType
+from django.core.mail import send_mail
 from django.views.generic import View
 from django.contrib import messages
 from django.conf import settings
@@ -47,7 +48,22 @@ class CustomDesign(View):
 				order.save()
 
 				# Send email to user
+				send_mail(
+					'Your new order was accepted',
+					'You can view your order on your profile page. It will be delivered to you via email. Thanks for using my website!',
+					'alen.krga1@gmail.com',
+					[request.user.email],
+					fail_silently=True,
+				)
+
 				# Send email to admin
+				send_mail(
+					'You have a new order',
+					f'New order from {request.user.email}',
+					'alen.krga1@gmail.com',
+					['alen.krga1@gmail.com'],
+					fail_silently=True,
+				)
 
 				messages.success(request, "You successfully requested an order. You can view it on your profile page.")
 				return redirect(reverse('profile'))
