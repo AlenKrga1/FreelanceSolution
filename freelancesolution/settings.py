@@ -118,7 +118,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-LOGIN_URL = '/sign-in/'
+LOGIN_URL = '/accounts/sign-in/'
 
 
 # Internationalization
