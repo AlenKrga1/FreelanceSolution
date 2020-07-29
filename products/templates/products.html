@@ -23,7 +23,7 @@
                         <option value="POSTER" {% if request.GET.category == 'POSTER' %} selected {% endif %}>Posters</option>
                     </select>
                 </div>
-                <input type="submit">
+                <button class="btn btn-primary" onclick="this.form.submit()">Filter</button>
             </form>
         </div>
     </div>
