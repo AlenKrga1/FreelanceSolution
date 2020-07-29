@@ -22,18 +22,19 @@
         </div>
         <div class="container">
             <div class="row no-gutters">
-                <div class="col-md-6 col-lg-4 item zoom-on-hover" style="background-color: white;"><a><img
-                            class="img-fluid image" src="{% static 'img/logo-1.svg' %}"></a></div>
-                <div class="col-md-6 col-lg-4 item zoom-on-hover" style="background-color: white;"><a><img
-                            class="img-fluid image" src="{% static 'img/logo-4.svg' %}"></a></div>
-                <div class="col-md-6 col-lg-4 item zoom-on-hover" style="background-color: white;"><a><img
-                            class="img-fluid image" src="{% static 'img/logo-12.svg' %}"></a></div>
+                {% for product in products %}
+                <div class="col-md-6 col-lg-4 item zoom-on-hover" style="background-color: white;">
+                    <a>
+                        <img class="img-fluid image" src="{{ product.img.url }}" style="width: 100%;">
+                    </a>
+                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="container">
             <div class="row justify-content-center my-4">
                 <div class="col-lg-6 text-center">
-                    <a class="btn btn-outline-primary btn-lg" role="button" href="#">All Products</a>
+                    <a class="btn btn-outline-primary btn-lg" role="button" href="{% url 'products' %}">All Products</a>
                 </div>
             </div>
         </div>

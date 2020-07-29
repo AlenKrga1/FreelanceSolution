@@ -23,7 +23,7 @@
                 <a href="{% url 'view_product' user_product.product.id %}"><img src="{{user_product.product.img.url}}" class="card-img-top"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{ user_product.product.name }}</h5>
-                    <button class="btn btn-block btn-primary">Download</button>
+                    <a href="{{user_product.product.img.url}}" download><button class="btn btn-block btn-primary">Download</button></a>
                 </div>
             </div>
         </div>
