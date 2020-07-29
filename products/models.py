@@ -1,5 +1,6 @@
 from freelancesolution.enums import ProductType
 from django.contrib.auth.models import User
+from django.utils import timezone
 from django.db import models
 
 
@@ -21,3 +22,11 @@ class UserProduct(models.Model):
 
 	def __str__(self):
 		return f'{self.user.username}: {self.product.name}'
+
+
+class ProductReview(models.Model):
+	product = models.ForeignKey(Product, on_delete = models.CASCADE)
+	user = models.ForeignKey(User, on_delete = models.CASCADE)
+	title = models.CharField(max_length = 200)
+	review = models.TextField()
+	date_created = models.DateTimeField(default = timezone.now)

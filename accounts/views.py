@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
 from django.contrib.auth.decorators import login_required
 from .forms import UserSignInForm, UserRegisterForm
 from django.shortcuts import render, redirect
@@ -22,7 +23,13 @@ def logout(request):
 
 	return redirect(reverse('index'))
 
-class SignIn(View):
+class SignIn(UserPassesTestMixin, AccessMixin, View):
+
+	def test_func(self):
+		return self.request.user.is_anonymous
+
+	def handle_no_permission(self):
+		return redirect(reverse('profile'))
 
 	def get(self, request):
 		form = UserSignInForm()
@@ -57,7 +64,13 @@ class SignIn(View):
 
 
 
-class Register(View):
+class Register(UserPassesTestMixin, AccessMixin, View):
+
+	def test_func(self):
+		return self.request.user.is_anonymous
+
+	def handle_no_permission(self):
+		return redirect(reverse('profile'))
 
 	def get(self, request):
 		form = UserRegisterForm()

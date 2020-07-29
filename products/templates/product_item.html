@@ -23,15 +23,39 @@
                     <h5>Price: <strong>{{ product.price }}EUR</strong></h5>
                 </div>
                 <div class="col-xs-12 col-md-6 product-details-center-right">
-                    <h5>Quantity <input name="quantity" type="number" value="1"/></h5>
+                    <h5>Quantity <input name="quantity" type="number" value="1" /></h5>
                 </div>
             </div>
             <div class="row my-4 mx-2 align-content-center">
                 <div class="col col-xs-12">
-                    <button type="submit" class="btn btn-primary btn-block" style="font-size: 1.5em;">Add to cart</button>
+                    <button type="submit" class="btn btn-primary btn-block" style="font-size: 1.5em;">Add to
+                        cart</button>
                 </div>
             </div>
         </form>
     </div>
+    <br>
+    <div class="row justify-content-between mx-2">
+        <h2>Reviews</h2>
+        {% if owns_product %}
+        <button class="btn btn-primary">Write a review</button>
+        {% endif %}
+    </div>
+    <div class="row mx-2">
+        {% if not owns_product %}
+        <p>You don't own this product so you can't write a review.</p>
+        {% endif %}
+    </div>
+    {% for review in reviews %}
+    <div class="card my-4">
+        <div class="row">
+            <div class="col col-xs-12 m-4">
+                <h6 class="card-title"><strong>{{ request.user.username }}</strong></h6>
+                <h5 class="card-title">{{ review.title }}</h5>
+                <p class="card-text">{{ review.review }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
