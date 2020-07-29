@@ -6,13 +6,15 @@ from products.models import UserProduct
 from django.views.generic import View
 from django.http import HttpResponse
 from django.urls import reverse
+from orders.models import Order
 
 
 @login_required
 def profile(request):
 	user_products = UserProduct.objects.filter(user = request.user)
+	orders = Order.objects.filter(user = request.user)
 
-	return render(request, 'profile.html', {'user_products': user_products})
+	return render(request, 'profile.html', {'user_products': user_products, 'orders': orders})
 
 @login_required
 def logout(request):

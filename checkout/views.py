@@ -63,15 +63,3 @@ class Checkout(View):
 			return redirect(reverse('view_cart'))
 
 		return render(request, 'checkout.html', {'publishable': settings.STRIPE_PUBLISHABLE})
-
-
-# def create_payment(request):
-# 	cart = request.session.get('cart', {})
-# 	total = 0
-
-# 	for id, quantity in cart.items():
-# 		item = Product.objects.get(id = id)
-# 		total += quantity * item.price
-
-# 	intent = stripe.PaymentIntent.create(amount = total * 100, currency = 'eur')
-# 	return JsonResponse({'clientSecret': intent['client_secret']})

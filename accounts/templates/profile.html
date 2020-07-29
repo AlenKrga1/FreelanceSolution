@@ -16,18 +16,43 @@
             instantly!</p>
         {% endif %}
     </div>
-    <div class="row my-4 justify-content-center">
+    <h2>Purchased items</h2>
+    <div class="row my-4">
         {% for user_product in user_products %}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             <div class="card mb-2">
-                <a href="{% url 'view_product' user_product.product.id %}"><img src="{{user_product.product.img.url}}" class="card-img-top"></a>
+                <a href="{% url 'view_product' user_product.product.id %}"><img src="{{user_product.product.img.url}}"
+                        class="card-img-top"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{ user_product.product.name }}</h5>
-                    <a href="{{user_product.product.img.url}}" download><button class="btn btn-block btn-primary">Download</button></a>
+                    {% if user_product.product.high_res %}
+                    <a href="{{user_product.product.high_res.url}}" download><button
+                            class="btn btn-block btn-primary">Download</button></a>
+                    {% endif %}
                 </div>
             </div>
         </div>
         {% endfor %}
+        </div>
+
+        
+        <h2>Custom orders</h2>
+        {% if orders %}
+        <strong>You will receive an email with the finished designs.</strong>
+        <div class="row my-4">
+            {% for order in orders %}
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ order.product_type }}</h5>
+                        <p>{{ order.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        {% else %}
+        <p>You have no orders.</p>
+        {% endif %}
     </div>
-</div>
-{% endblock %}
+    {% endblock %}

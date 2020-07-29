@@ -27,6 +27,7 @@ ALLOWED_HOSTS = ['freelance-solution.herokuapp.com',]
 # Application definition
 
 INSTALLED_APPS = [
+	'orders',
 	'checkout',
 	'cart',
 	'products',
