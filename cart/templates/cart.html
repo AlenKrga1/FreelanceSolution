@@ -12,6 +12,7 @@
                 <img src="{{item.product.img.url}}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.product.name }}</h5>
+                    <p>Category: <strong>{{ item.product.product_type|lower|capfirst }}</strong></p>
                     <p class="card-text">{{ item.product.description }}</p>
                     <div class="dropdown-divider"></div>
                     <div class="row align-items-center justify-content-between m-1">

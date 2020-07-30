@@ -11,6 +11,7 @@
             </div>
             <div class="col col-md6 col-xs-12 m-4">
                 <h5 class="card-title">{{ product.name }}</h5>
+                <p>Category: <strong>{{ product.product_type|lower|capfirst }}</strong></p>
                 <p class="card-text">{{ product.description }}</p>
             </div>
         </div>
