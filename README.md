@@ -10,9 +10,10 @@ This website is to emulate a freelancing website that provides already existing 
 ## Table of contents
 
 1. [UX](#UX)
-    1. [Design choices](#Design-choices)
-    2. [Fonts](#Colors)
-    3. [Wireframes](#Wireframes)
+    1. [Design process](#Design-process)
+    2. [Design choices](#Design-choices)
+    3. [Fonts](#Colors)
+    4. [Wireframes](#Wireframes)
 2. [Features](#Features)
     1. [Accounts](#Accounts)
         1. [Register page](#Register-page)
