@@ -33,7 +33,6 @@ This website is to emulate a freelancing website that provides already existing 
     2. [Libraries and frameworks](#Libraries-and-frameworks)
     3. [Languages](#Languages)
 4. [Testing](#Testing)
-      - You can find the [TESTING.md](TESTING.md) file here.
 5. [Deployment](#Deployment)
     1. [Instructions](#Instructions)
     2. [Deployment to Heroku](#Deployment-to-Heroku)
