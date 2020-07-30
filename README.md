@@ -73,7 +73,7 @@ Users have the ability to create their account, log in and reset their password 
   - A username (or email) and password of an already existing account are required to sign in.
 
 ### Profile page
-    - Authenticated users only. Provides a view of purchased products and pending orders by the user. The user can download high resolution files of the products they bought.
+  - Authenticated users only. Provides a view of purchased products and pending orders by the user. The user can download high resolution files of the products they bought.
 
 ### Reset password
   - Step 1: at the login page, you can find the `forgot my password` link in which will lead to a form to enter your account email.
@@ -82,7 +82,7 @@ Users have the ability to create their account, log in and reset their password 
   - Step 4: Once the password is set you can login with the new password.
 
 ### Logout
-    - Logs out the currently authenticated user and clears the session (removes everything from the cart).
+  - Logs out the currently authenticated user and clears the session (removes everything from the cart).
 
 ## Home page
 Home page introduces the user to Alen Krga and his work. It also holds all the neccessary navigation for the user and makes it easier for the user to navigate to the most important pages for him: Products and Request a design. Most of the users will find what they need on the Products page but for those needing a bit more customized designs or something completely unique, they can submit a request for a custom design.
@@ -147,7 +147,31 @@ Users who need a more customized design can request a custom design through this
 
 # Testing
 
-The testing information can be found in this separated [Testing](TESTING.md) file.
+Sadly except manual testing, I didn't have enough time to write unit tests.
+   - There are no dead links on the website.
+   - There are no errors and warnings in the Developer console
+   - The page is fully responsive and has been tested using the Developer console.
+
+## Mobile
+  - Galaxy S5
+  - Pixel 2
+  - Pixel 2 XL
+  - iPhone 4
+  - iPhone 5 SE
+  - iPhone 6, 7 and 8
+  - iPhone 6, 7 and 8 Plus (real device)
+  - iPhone X
+
+## Tablet
+  - iPad
+  - iPad Pro
+
+## Laptop
+  - Macbook
+
+
+## Bugs
+  - The secret key was accidentaly pushed to GitHub when creating the project, but a new one was generated for production.
 
 
 # Deployment
