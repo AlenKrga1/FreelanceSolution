@@ -55,6 +55,8 @@ Every screen has a 'Scroll to Top' feature, a button showing up at the right-bot
 ### Wireframes
 The wireframes developed for this project was only taken three types of devices, desktop, tablet and mobile.
 In addition, the tool used to develop this wireframes was [Balsamiq](https://balsamiq.com/) giving the ability to a rapid design.
+  - [Mobile devices](https://freelance-solution.herokuapp.com/static/wireframes/Mobile.png)
+  - [Desktop devices](https://freelance-solution.herokuapp.com/static/wireframes/Desktop.png)
 
 # Features
 
