@@ -6,4 +6,5 @@ class ContactMe(models.Model):
 	message = models.TextField()
 
 	class Meta:
+		# If not set, the admin renders it as 'Contact Mes'
 		verbose_name_plural = 'Contact Me'

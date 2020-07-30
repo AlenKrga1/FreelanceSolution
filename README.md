@@ -26,8 +26,9 @@ This website is to emulate a freelancing website that provides already existing 
     4. [Request a design](#Request-a-design)
     5. [Cart](#Cart)
     6. [Checkout](#Checkout)
-    7. [404 page](#404-page)
-    8. [Features left to implement](#Features-left-to-implement)
+    7. [Admin panel](#Admin-panel)
+    8. [404 page](#404-page)
+    9. [Features left to implement](#Features-left-to-implement)
 3. [Technologies](#Technologies)
     1. [Tools](#Tools)
     2. [Libraries and frameworks](#Libraries-and-frameworks)
@@ -41,6 +42,13 @@ This website is to emulate a freelancing website that provides already existing 
     2. [Code](#Code)
 
 # UX
+
+## Design process
+The main goal of the website was to show-off the admin's designs and make them easily available for purchase. So the whole design process was based around that goal. The home page is simple yet informative and has multiple links to the Products page and the Custom Design page. To increase the maximum reach of the website, all users can view all the products, not only authenticated ones. For more advanced features the authentication is required. User's info is used as much as possible to avoid the user having to type in his info more than once on the website.
+The point is to get the user to make a purchase in the least ammount of steps. This led to the current design: a simple yet informative home page with quick access to all the selling parts of the website. The user can quickly search for an item and add it to the cart, so the checkout had to be quick as well. Thanks to Django and Stripe it was more than possible to achieve that.
+The admin offers a few different options, so I had to include types in the Product model. That made the 'Filter' option a must-have in the app to make it even faster for users to find what they need.
+Lastly, for those who want a bit more than the products offer, there is an easy-to-access page for submitting a custom design request. This was a complete must from the beggining of the project, to maximize the sales. To further decrease the number of steps to complete a request for a design, the built-in calculator shows the price immediately and the user can checkout using the Stripe's payment form.
+
 ## Design choices
 This website was designed to get the user a design that suits their needs as fast as possible. It has a database of production-ready designs but also gives the clients the opportunity to request a custom-tailored design.
 
@@ -76,6 +84,9 @@ Users have the ability to create their account, log in and reset their password 
 ### Profile page
   - Authenticated users only. Provides a view of purchased products and pending orders by the user. The user can download high resolution files of the products they bought.
 
+### Contact me
+  - Anyone can type in their email and a message they want to send to the admin. After submitting the form, the admin gets an email with all the info, and the user also gets an email confirming that they sent the email.
+
 ### Reset password
   - Step 1: at the login page, you can find the `forgot my password` link in which will lead to a form to enter your account email.
   - Step 2: Add the email from the account you need to reset the password.
@@ -99,13 +110,14 @@ Below is the 'Reviews' section, where you can read reviews of users that bought 
 Users who need a more customized design can request a custom design through this form. Description and design type are required. A Javascript-built calculator then calculates the price for the user and the user pays immediately. The price is of course calculated on the backend again, for security reasons. The user then gets an email confirmation of the requested order, and the admin gets an email informing him of the new order.
 
 ## Cart
-
  The cart gives the user the ability to view and edit the cart as they wish. The user can view products in the cart, edit the quantity or delete the product altogether. After that the user proceeds to the 'Checkout' page by clicking the button 'Checkout'.
 
 ## Checkout
-
   - The checkout application holds and manipulates the `Stripe` API. In which empowers the overall application with the e-commerce functionality.
   - In this application is developed and performed the forms users who are willing to buy any retreat, to plot their details into the checkout application forms and finalise the purchase.
+
+## Admin panel
+The admin panel has 4 custom registered apps: Accounts, Orders and Products. In these apps there are 5 different models registered (ContactMe, Orders, ProductReviews, Products and UserProducts). The admin can perform CRUD operations on all of them. Only admin users have access to the Admin panel.
 
 ## 404 page
 
@@ -136,7 +148,7 @@ Users who need a more customized design can request a custom design through this
 
   - [Django](https://www.djangoproject.com/) a high level python web-framework used to design this project.
   - [Bootstrap 4](https://getbootstrap.com/) a CSS library grid used for the development of this site.
-  - [FontAwesome](https://fontawesome.com/) for the creation and implementation of icons.
+  - [Ionicons](https://ionicons.com/) for the creation and implementation of icons.
   - [Google fonts](https://fonts.google.com/) to bring custom font styling.
   - [Psycopg2-binary](https://pypi.org/project/psycopg2-binary/#description) used as the Python PostgreSQL adapter.
   - [Jquery](https://jquery.com/) a Javascript library to simplify the code.
@@ -217,7 +229,6 @@ To continue on the process of deployment you should have accounts on the followi
       $ pip install -r requirements.txt
       ```
   6. Create a `local_settings.py` file inside `freelancesolution` to store development variables:
-
      ```
     import os
 

@@ -1,11 +1,13 @@
 from products.models import Product
 
+# Called every time the template renders so the template has the cart info available every time
 def cart_data(request):
 
 	cart = request.session.get('cart', {})
 	cart_count = 0
 	total = 0
 
+	# We copy the cart dictionary so we can remove items during the iteration
 	for id, quantity in cart.copy().items():
 		try:
 			item = Product.objects.get(id = id)

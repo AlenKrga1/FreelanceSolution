@@ -4,6 +4,7 @@ import datetime
 
 class PaymentForm(forms.Form):
     MONTH_CHOICES = [(i, i) for i in range(1, 13)]
+    # Gets the current year so we don't have to hardcode the values
     YEAR_CHOICES = [(i, i) for i in range(datetime.datetime.now().year, datetime.datetime.now().year + 16)]
 
     credit_card_number = forms.CharField(label='Credit card number', required=False)

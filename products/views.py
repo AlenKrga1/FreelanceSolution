@@ -20,6 +20,7 @@ def products(request):
 
 def view_product(request, id):
 	product = Product.objects.get(id = id)
+	# Gets all product reviews and sorts them by newest
 	reviews = ProductReview.objects.all().filter(product = product).order_by('-date_created')
 
 	if request.user.is_authenticated:
@@ -52,12 +53,14 @@ class WriteReview(View):
 				messages.error(request, "Invalid request")
 				return redirect(reverse('view_product', args=(product_id, )))
 
+			# This tells us if the user owns the product so we can determine if they can write a review
 			owns_product = len(UserProduct.objects.filter(user = request.user, product = product)) > 0
 
 			if not owns_product:
 				messages.error(request, "Invalid request")
 				return redirect(reverse('view_product', args=(product_id, )))
 
+			# Creates the object without saving so we can set user and product fields
 			review = form.save(commit = False)
 
 			review.user = request.user
@@ -65,4 +68,5 @@ class WriteReview(View):
 
 			review.save()
 
+		# redirects the user to the Product details page of that particular product
 		return redirect(reverse('view_product', args=(product_id, )))

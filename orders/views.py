@@ -9,6 +9,7 @@ from django.conf import settings
 from .forms import OrderForm
 import stripe
 
+# Sets the stripe API key
 stripe.api_key = settings.STRIPE_SECRET
 
 class CustomDesign(View):
@@ -30,6 +31,7 @@ class CustomDesign(View):
 				messages.error(request, "Form invalid")
 				return redirect(reverse('custom_design'))
 
+			# Get the stripe token that stripe.js put in the form before submitting
 			stripe_token = request.POST.get('stripeToken')
 			print(stripe_token)
 
@@ -45,6 +47,7 @@ class CustomDesign(View):
 				return redirect(reverse('custom_design'))
 
 			if customer.paid:
+				# Create the object without saving it so we can set the user
 				order = form.save(commit = False)
 				order.user = request.user
 				order.save()

@@ -5,6 +5,7 @@
 {% block content %}
 <div class="page container">
     <div class="row justify-content-center">
+        <!-- Responsive Sign in form -->
         <div class="col-lg-6 m-5">
             <form method="post" action="{% url 'sign-in' %}?next={{ next }}">
                 <legend>Sign in</legend>

@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.conf import settings
 import stripe
 
+# Sets the stripe API key
 stripe.api_key = settings.STRIPE_SECRET
 
 
@@ -18,6 +19,7 @@ class Checkout(View):
 		cart = request.session.get('cart', {})
 		total = 0
 
+		# Gets the stripe token that stripe.js put in the form before submitting
 		stripe_token = request.POST.get('stripeToken')
 		products = []
 
@@ -39,6 +41,8 @@ class Checkout(View):
 		if customer.paid:
 			user_products = []
 
+			# Creates the Many to Many connection between Users and Products
+			# Or in simpler terms, adds the Products to Users
 			for product in products:
 				user_product = UserProduct(user = request.user, product = product)
 				user_products.append(user_product)
@@ -60,6 +64,7 @@ class Checkout(View):
 	def get(self, request):
 		cart = request.session.get('cart', {})
 
+		# Renders the cart if it's empty instead of going to checkout
 		if not cart:
 			return redirect(reverse('view_cart'))
 

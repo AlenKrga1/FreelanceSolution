@@ -14,6 +14,7 @@ def view_cart(request):
 
 def add_to_cart(request, id):
 	cart = request.session.get('cart', {})
+	# Gets the quantity if the param exists, else sets it to 1
 	quantity = int(request.POST.get('quantity', 1))
 
 	if id in cart:
@@ -26,6 +27,7 @@ def add_to_cart(request, id):
 
 
 def adjust_cart(request, id):
+	# Gets the quantity if the param exists, else sets it to 0
 	quantity = int(request.POST.get('quantity', 0))
 	cart = request.session.get('cart', {})
 

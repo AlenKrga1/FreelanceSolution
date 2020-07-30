@@ -5,6 +5,7 @@
 {% block content %}
 <div class="page container">
     <div class="row my-4 justify-content-center">
+        <!-- Checks if there are items in the cart -->
         {% if cart_items %}
         {% for item in cart_items %}
         <div class="col-xs-12 col-md-6 col-lg-4">
@@ -22,6 +23,7 @@
                             <p class="card-text my-0" style="margin-right: 10px;">Quantity:</p>
                             <form method="post" action="{% url 'update_cart' item.product.id %}">
                                 {% csrf_token %}
+                                <!-- Integer input that submits the form on every change -->
                                 <input name="quantity" type="number" value="{{ item.quantity }}" style="max-width: 3em;"
                                     onchange="this.form.submit()" />
                             </form>

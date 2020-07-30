@@ -26,6 +26,7 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+    # Checks if the email already exists in the database
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
@@ -33,6 +34,7 @@ class UserRegisterForm(UserCreationForm):
             raise forms.ValidationError(u'Email address must be unique.')
         return email
 
+    # Checks if the passwords match
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
