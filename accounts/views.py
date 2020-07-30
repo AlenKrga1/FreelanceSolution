@@ -20,6 +20,7 @@ class ContactMe(View):
 			email = form.cleaned_data['email']
 			message = form.cleaned_data['message']
 
+			# Send an email to typed in address
 			send_mail(
 				f'You sent a message to Alen Krga',
 				f'Thanks for reaching out! We will be in touch soon.\n\nMessage: "{message}"',
@@ -28,6 +29,7 @@ class ContactMe(View):
 				fail_silently=True,
 			)
 
+			# Send an email to admin to notify him of a new message
 			send_mail(
 				f'You have a new message from {email}',
 				f'Message: {message}',
@@ -53,6 +55,7 @@ class ContactMe(View):
 
 @login_required
 def profile(request):
+	# Get products that the user owns and his custom orders
 	user_products = UserProduct.objects.filter(user = request.user)
 	orders = Order.objects.filter(user = request.user)
 
@@ -64,6 +67,8 @@ def logout(request):
 
 	return redirect(reverse('index'))
 
+
+#  These Mixins are used to make sure authenticated users can't access these urls
 class SignIn(UserPassesTestMixin, AccessMixin, View):
 
 	def test_func(self):
@@ -104,7 +109,7 @@ class SignIn(UserPassesTestMixin, AccessMixin, View):
 			return render(request, 'signin.html', {'form': form, 'next': request.GET.get('next', '')})
 
 
-
+#  These Mixins are used to make sure authenticated users can't access these urls
 class Register(UserPassesTestMixin, AccessMixin, View):
 
 	def test_func(self):

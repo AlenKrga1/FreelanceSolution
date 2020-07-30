@@ -17,6 +17,8 @@ class CustomDesign(View):
 	def post(self, request):
 		form = OrderForm(request.POST)
 		if form.is_valid():
+
+			# Calculate the price on the backend for security reasons
 			price = 0
 			if form.cleaned_data['product_type'] == ProductType.ICON.name:
 				price = 75

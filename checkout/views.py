@@ -43,6 +43,7 @@ class Checkout(View):
 				user_product = UserProduct(user = request.user, product = product)
 				user_products.append(user_product)
 
+			# Used bulk_create to optimize the DB queries
 			UserProduct.objects.bulk_create(user_products)
 
 			request.session['cart'] = {}
