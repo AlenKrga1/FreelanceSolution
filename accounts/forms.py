@@ -1,12 +1,15 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from .models import ContactMe
 from django import forms
 
 
-class ContactMeForm(forms.Form):
-    email = forms.CharField()
-    message = forms.CharField(widget=forms.Textarea)
+class ContactMeForm(forms.ModelForm):
+    
+    class Meta:
+        model = ContactMe
+        fields = ('email', 'message')
 
 
 class UserSignInForm(forms.Form):

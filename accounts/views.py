@@ -36,6 +36,8 @@ class ContactMe(View):
 				fail_silently=True,
 			)
 
+			form.save()
+
 			messages.info(request, "Message sent!")
 			return redirect(reverse('index'))
 
