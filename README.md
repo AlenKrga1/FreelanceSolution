@@ -118,7 +118,7 @@ Users who need a more customized design can request a custom design through this
   - In this application is developed and performed the forms users who are willing to buy any retreat, to plot their details into the checkout application forms and finalise the purchase.
 
 ## Admin panel
-The admin panel has 4 custom registered apps: Accounts, Orders and Products. In these apps there are 5 different models registered (ContactMe, Orders, ProductReviews, Products and UserProducts). The admin can perform CRUD operations on all of them. Only admin users have access to the Admin panel.
+The admin panel has 3 custom registered apps: Accounts, Orders and Products. In these apps there are 5 different models registered (ContactMe, Orders, ProductReviews, Products and UserProducts). The admin can perform CRUD operations on all of them. Only admin users have access to the Admin panel.
 
 ## 404 page
 
