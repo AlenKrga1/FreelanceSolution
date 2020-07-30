@@ -22,8 +22,11 @@ def view_product(request, id):
 	product = Product.objects.get(id = id)
 	reviews = ProductReview.objects.all().filter(product = product).order_by('-date_created')
 
+	if request.user.is_authenticated:
 	# This tells us if the user owns the product so we can determine if they can write a review
-	owns_product = len(UserProduct.objects.filter(user = request.user, product = product)) > 0
+		owns_product = len(UserProduct.objects.filter(user = request.user, product = product)) > 0
+	else:
+		owns_product = False
 
 	return render(request, 'product_item.html', {'product': product, 'reviews': reviews, 'owns_product': owns_product})
 

@@ -117,6 +117,7 @@ Users who need a more customized design can request a custom design through this
    2. Automatic generation of thumbnails for products.
    3. More product types.
    4. Multiple images for a product.
+   5. Order Status inside Profile page.
 
 # Technologies
 
@@ -170,9 +171,14 @@ Sadly except manual testing, I didn't have enough time to write unit tests.
 ## Laptop
   - Macbook
 
+## Browsers
+  - Chome
+  - Safari
+  - Firefox
+  - Opera
 
 ## Bugs
-  - The secret key was accidentaly pushed to GitHub when creating the project, but a new one was generated for production.
+  - There are no known bugs. If you find a bug, please report it!
 
 
 # Deployment

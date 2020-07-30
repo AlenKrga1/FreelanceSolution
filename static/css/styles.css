@@ -1,3 +1,7 @@
+.btn-link {
+    text-decoration: none !important;
+}
+
 #scroll-to-top {
     display: none;
     position: fixed;

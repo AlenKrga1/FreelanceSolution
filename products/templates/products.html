@@ -17,7 +17,7 @@
                 <div class="form-group mt-2">
                     <label for="category">Choose category:</label>
                     <select name="category" class="form-control" id="category">
-                        <option value="">-----</option>
+                        <option value="">All categories</option>
                         <option value="ICON" {% if request.GET.category == 'ICON' %} selected {% endif %}>Icons</option>
                         <option value="LOGO" {% if request.GET.category == 'LOGO' %} selected {% endif %}>Logos</option>
                         <option value="POSTER" {% if request.GET.category == 'POSTER' %} selected {% endif %}>Posters</option>
@@ -28,6 +28,7 @@
         </div>
     </div>
     <div class="row my-4">
+        {% if products %}
         {% for product in products %}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             <div class="card mb-2">
@@ -36,6 +37,7 @@
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p>Category: <strong>{{ product.product_type|lower|capfirst }}</strong></p>
                     <p class="card-text">{{ product.description|truncatewords:10 }}</p>
+                    <a href="{% url 'view_product' product.id %}" class="btn-link"><button type="button" class="btn btn-outline-dark btn-block">View more</button></a>
                     <div class="dropdown-divider"></div>
                     <div class="row text-right align-items-center justify-content-between m-1">
                         <p class="card-text m-0">Price: <strong>{{ product.price }}EUR</strong></p>
@@ -48,6 +50,9 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <p>No results found for your search.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

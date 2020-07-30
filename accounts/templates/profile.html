@@ -25,8 +25,9 @@
                         class="card-img-top"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{ user_product.product.name }}</h5>
+                    <a href="{% url 'view_product' user_product.product.id %}" class="btn-link" ><button type="button" class="btn btn-outline-dark btn-block mb-2">View more</button></a>
                     {% if user_product.product.high_res %}
-                    <a href="{{user_product.product.high_res.url}}" download><button
+                    <a href="{{user_product.product.high_res.url}}" download="download" target="_blank" class="btn-link"><button
                             class="btn btn-block btn-primary">Download</button></a>
                     {% endif %}
                 </div>
